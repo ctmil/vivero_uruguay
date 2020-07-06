@@ -1,0 +1,37 @@
+<odoo>
+
+<record model="ir.ui.view" id="ncm_product_form">
+	<field name="name">ncm.product.form</field>
+	<field name="model">product.template</field>
+	<field name="inherit_id" ref="product.product_template_form_view"></field>
+	<field name="arch" type="xml">
+		<field name="type" position="after">
+			<field name="codigo_ncm" />
+		</field>
+	</field>
+</record>
+
+<record model="ir.ui.view" id="ncm_product_tree">
+	<field name="name">ncm.product.tree</field>
+	<field name="model">product.template</field>
+	<field name="inherit_id" ref="product.product_template_tree_view"></field>
+	<field name="arch" type="xml">
+		<field name="name" position="after">
+			<field name="codigo_ncm" />
+		</field>
+	</field>
+</record>
+
+<record model="ir.ui.view" id="ncm_product_search">
+	<field name="name">ncm.product.search</field>
+	<field name="model">product.template</field>
+	<field name="inherit_id" ref="product.product_template_search_view"></field>
+	<field name="arch" type="xml">
+		<field name="name" position="after">
+			<field name="codigo_ncm" />
+		</field>
+	</field>
+</record>
+
+
+</odoo>
