@@ -33,5 +33,63 @@
 	</field>
 </record>
 
+<record model="ir.ui.view" id="vivero_planta_view_form">
+	<field name="name">vivero.planta.view.form</field>
+	<field name="model">vivero.planta</field>
+	<field name="arch" type="xml">
+		<form string="Plant">
+			<sheet>
+				<h1>
+					<field name="name" placeholder="Nombre de la planta"/>
+				</h1>
+				<notebook>
+					<page string="Shop">
+						<group>
+							<field name="price"/>
+						</group>
+					</page>
+					<page string="Pedidos">
+						<group>
+							<field name="pedido_ids">
+								<tree editable="editable_bottom">
+									<field name="partner_id" domain="[('customer_rank','>',0)]"/>
+									<field name="qty"/>
+									<field name="price_unit"/>
+									<field name="amount_total"/>
+								</tree>
+							</field>
+						</group>
+					</page>
+				</notebook>
+			</sheet>
+		</form>
+	</field>
+</record>
+
+<record model="ir.ui.view" id="vivero_planta_view_tree">
+	<field name="name">vivero.planta.view.tree</field>
+	<field name="model">vivero.planta</field>
+	<field name="arch" type="xml">
+		<tree>
+			<field name="name" />
+			<field name="price" />
+		</tree>
+	</field>
+</record>
+
+
+<record model="ir.actions.act_window" id="action_vivero_planta">
+	<field name="name">Plantas</field>
+	<field name="res_model">vivero.planta</field>
+	<field name="view_mode">tree,form</field>
+</record>
+
+	<menuitem name="Vivero Uruguay" id="nursery_root_menu" />
+	
+	<menuitem name="Plantas" id="nursery_plant_menu"
+		parent="nursery_root_menu"
+		action="action_vivero_planta"
+		sequence="1"/>
+
 
 </odoo>

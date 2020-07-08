@@ -7,7 +7,7 @@
     'summary': 'Plants and customers management',
     'depends': ['web','product'],
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         #'data/data.xml',
         'uruguay_view.xml',
         ],
