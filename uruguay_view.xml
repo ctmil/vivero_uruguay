@@ -1,5 +1,18 @@
 <odoo>
 
+<record model="ir.ui.view" id="sibra_res_partner_form">
+	<field name="name">sibra.res.partner.form</field>
+	<field name="model">res.partner</field>
+	<field name="inherit_id" ref="base.view_partner_form"></field>
+	<field name="arch" type="xml">
+		<notebook>
+			<page string="Sibra">
+				<field name="pedido_ids" />
+			</page>
+		</notebook>
+	</field>
+</record>
+
 <record model="ir.ui.view" id="ncm_product_form">
 	<field name="name">ncm.product.form</field>
 	<field name="model">product.template</field>
@@ -46,6 +59,7 @@
 					<page string="Shop">
 						<group>
 							<field name="price"/>
+							<field name="total_pedido"/>
 						</group>
 					</page>
 					<page string="Pedidos">
@@ -56,6 +70,7 @@
 									<field name="qty"/>
 									<field name="price_unit"/>
 									<field name="amount_total"/>
+									<field name="last_write_date"/>
 								</tree>
 							</field>
 						</group>
@@ -74,6 +89,18 @@
 			<field name="name" />
 			<field name="price" />
 		</tree>
+	</field>
+</record>
+
+
+<record model="ir.ui.view" id="vivero_planta_view_tree_nocreate">
+	<field name="name">vivero.planta.view.tree.nocreate</field>
+	<field name="inherit_id" ref="vivero_planta_view_tree"></field>
+	<field name="model">vivero.planta</field>
+	<field name="arch" type="xml">
+		<xpath expr="//tree" position="attributes">
+			<attribute name="create">0</attribute>
+		</xpath>
 	</field>
 </record>
 
