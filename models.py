@@ -39,6 +39,12 @@ class Plants(models.Model):
 class Pedido(models.Model):
     _name = 'vivero.pedido'
 
+    def btn_confirm(self):
+        self.ensure_one()
+        sequence = self.env['ir.sequence'].next_by_code('PEDIDO-UY')
+        self.name = sequence
+        self.state = 'confirmed'
+
     @api.constrains('qty')
     def check_qty(self):
         if self.qty == 0:
@@ -60,3 +66,6 @@ class Pedido(models.Model):
     price_unit = fields.Float('Precio Unitario',related='plant_id.price')
     amount_total = fields.Float('Precio Total')
     last_write_date = fields.Datetime('Fecha Ultima Modif')
+    state = fields.Selection(selection=[('draft','Borrador'),('confirmed','Confirmado')],default='draft')
+    name = fields.Char('Nombre',default='Borrador')
+    image = fields.Binary('Imagen')

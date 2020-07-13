@@ -118,5 +118,75 @@
 		action="action_vivero_planta"
 		sequence="1"/>
 
+<record model="ir.ui.view" id="vivero_pedido_view_form">
+	<field name="name">vivero.pedido.view.form</field>
+	<field name="model">vivero.pedido</field>
+	<field name="arch" type="xml">
+		<form>
+			<header>
+				<button name="btn_confirm" string="Confirmar" states="draft" type="object"/>
+				<field name="state" widget="statusbar" />
+			</header>
+			<sheet>
+				<group>
+					<field name="plant_id" />
+					<field name="image" widget="binary" />
+					<field name="partner_id" />
+					<field name="qty" />
+					<field name="amount_total" />
+				</group>
+			</sheet>
+		</form>
+	</field>
+</record>
+
+<record model="ir.ui.view" id="vivero_pedido_view_kanban">
+	<field name="name">vivero.pedido.view.kanban</field>
+	<field name="model">vivero.pedido</field>
+	<field name="arch" type="xml">
+		<kanban default_group_by="state">
+			<field name="id"/>
+			<field name="image"/>
+			<templates>
+				<t t-name="kanban-box">
+					<div class="oe_kanban_global_click">
+						<div class="o_kanban_image">
+							<img t-att-src="kanban_image('vivero.pedido', 'image', record.id.raw_value)"/>
+						</div>
+						<div class="oe_kanban_details">
+							<strong class="o_kanban_record_title"><field name="name"/></strong>
+							<ul><li><strong>Monto Total: <field name="amount_total"></field></strong></li></ul>
+						</div>
+					</div>
+				</t>
+			</templates>
+		</kanban>
+	</field>
+</record>
+
+<record model="ir.ui.view" id="vivero_pedido_view_tree">
+	<field name="name">vivero.pedido.view.tree</field>
+	<field name="model">vivero.pedido</field>
+	<field name="arch" type="xml">
+		<tree>
+			<field name="plant_id" />
+			<field name="partner_id" />
+			<field name="qty" />
+			<field name="amount_total" />
+		</tree>
+	</field>
+</record>
+
+<record model="ir.actions.act_window" id="action_vivero_pedido">
+	<field name="name">Pedidos</field>
+	<field name="res_model">vivero.pedido</field>
+	<field name="view_mode">kanban,tree,form</field>
+</record>
+	
+	<menuitem name="Pedidos" id="nursery_pedido_menu"
+		parent="nursery_root_menu"
+		action="action_vivero_pedido"
+		sequence="2"/>
+
 
 </odoo>
